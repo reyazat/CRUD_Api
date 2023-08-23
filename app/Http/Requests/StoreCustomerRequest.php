@@ -26,7 +26,7 @@ class StoreCustomerRequest extends FormRequest
             'lastname' => 'required|string|min:3|max:191|unique:customers,lastname',
             'date_of_birth' => 'required|date|unique:customers,date_of_birth',
             'email' =>  'required|email|max:255|unique:customers,email',
-            'phonenumber' => 'nullable|regex:/^09[0-9]{9}$/|phone:US,BE',
+            'phonenumber' => 'nullable|phone:US,BE',
             'bank_account' => 'required|string|max:255',
         ];
     }

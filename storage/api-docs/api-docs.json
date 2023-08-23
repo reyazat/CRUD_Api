@@ -80,13 +80,13 @@
                     }
                 ]
             },
-            "delete": {
+            "post": {
                 "tags": [
                     "Customer"
                 ],
-                "summary": "حذف مشتری ",
-                "description": "حذف مشتری",
-                "operationId": "19467afa9b9eacaa9de17f2be03a098f",
+                "summary": "وارد کردن اطلاعات ",
+                "description": "وارد کردن اطلاعات ",
+                "operationId": "99a4b71447b67852bf07ee569b29d615",
                 "parameters": [
                     {
                         "name": "Accept",
@@ -96,6 +96,194 @@
                         "schema": {
                             "type": "string"
                         }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "firstname",
+                                    "lastname",
+                                    "date_of_birth",
+                                    "email",
+                                    "bank_account"
+                                ],
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "date_of_birth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phonenumber": {
+                                        "type": "+1 650 253 0000"
+                                    },
+                                    "bank_account": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "وارد کردن اطلاعات ",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "وارد کردن اطلاعات ": {
+                                        "summary": "وارد کردن اطلاعات ",
+                                        "value": {
+                                            "status": "success",
+                                            "code": 200,
+                                            "message": "Saved",
+                                            "errors": [],
+                                            "data": {
+                                                "id": null,
+                                                "firstname": null
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/customers/{customer}": {
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "به روز رسانی اطلاعات ",
+                "description": "به روز رسانی اطلاعات ",
+                "operationId": "7e684254f82df7948a27c88fe31d038d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Customer ID",
+                        "required": true
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "application/json;",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "firstname",
+                                    "lastname",
+                                    "date_of_birth",
+                                    "email",
+                                    "bank_account"
+                                ],
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "date_of_birth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phonenumber": {
+                                        "type": "+1 650 253 0000"
+                                    },
+                                    "bank_account": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "به روز رسانی اطلاعات ",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "به روز رسانی اطلاعات ": {
+                                        "summary": "به روز رسانی اطلاعات ",
+                                        "value": {
+                                            "status": "success",
+                                            "code": 200,
+                                            "message": "Saved",
+                                            "errors": [],
+                                            "data": {
+                                                "id": null,
+                                                "firstname": null
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "حذف مشتری ",
+                "description": "حذف مشتری",
+                "operationId": "882785f76f2b8643cdb6761d5faf2635",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "application/json;",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Customer ID",
+                        "required": true
                     }
                 ],
                 "responses": {

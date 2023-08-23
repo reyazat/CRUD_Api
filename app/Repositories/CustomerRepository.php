@@ -9,7 +9,7 @@ class CustomerRepository implements CustomerInterface
 {
    public function getAll()
     {
-        return Customer::all();
+        return Customer::orderByDesc('id')->get();
     }
 
     public function find(Customer $Customer)
