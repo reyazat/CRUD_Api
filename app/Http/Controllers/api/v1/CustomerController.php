@@ -5,16 +5,25 @@ namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
+use App\Repositories\CustomerRepository;
 
 class CustomerController extends Controller
 {
+    protected $repository;
+    public function __construct(CustomerRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $customer = $this->repository->getAll();
+        return new CustomerResource($customer);
     }
 
     /**

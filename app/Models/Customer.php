@@ -23,4 +23,5 @@ class Customer extends Model
         'bank_account',
         'status'
     ];
+
 }
