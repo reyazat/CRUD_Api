@@ -1,0 +1,95 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CRUD API Test",
+        "description": "تست API در لاراول",
+        "contact": {
+            "email": "vreyazat@gmail.com"
+        },
+        "license": {
+            "name": "Vahid Reyazat",
+            "url": ""
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/customers": {
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "گرفتن کل داده های مشتری ها",
+                "description": "گرفتن کل داده های مشتری ها",
+                "operationId": "afae066e9cc32c8ca578a8b3899ee2ae",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "application/json;",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "گرفتن کل داده های مشتری ها",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "گرفتن کل داده های مشتری ها": {
+                                        "summary": "گرفتن کل داده های مشتری ها",
+                                        "value": {
+                                            "status": "success",
+                                            "code": 200,
+                                            "message": "Successfully logged out",
+                                            "errors": [],
+                                            "data": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "گرفتن کل داده های مشتری ها",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "گرفتن کل داده های مشتری ها": {
+                                        "summary": "گرفتن کل داده های مشتری ها",
+                                        "value": {
+                                            "status": "error",
+                                            "code": 401,
+                                            "message": "Unauthenticated.",
+                                            "errors": [],
+                                            "data": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

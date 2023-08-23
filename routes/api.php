@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(CustomerController::class)->middleware(['auth:api'])->group(function () {
-    Route::get('/customers', 'index');
+
+Route::prefix('v1')->group(function () {
+
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('/customers', 'index');
+    });
 });
+

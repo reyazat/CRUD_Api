@@ -17,8 +17,44 @@ class CustomerController extends Controller
         $this->repository = $repository;
     }
 
-    /**
-     * Display a listing of the resource.
+      /**
+     * @OA\Put(
+     * path="/api/v1/customers",
+     * tags={"Customer"},
+     * summary="گرفتن کل داده های مشتری ها",
+     * description="گرفتن کل داده های مشتری ها",
+     * security={ {"sanctum": {} }},
+     *    @OA\Parameter(
+     *          description="application/json;",
+     *          in="header",
+     *          name="Accept",
+     *          required=true,
+     *          @OA\Schema(type="string"),
+     *      ),
+     *
+     *     @OA\Response(
+     *          response=200,
+     *          description="گرفتن کل داده های مشتری ها",
+     *          @OA\JsonContent(
+     *             @OA\Examples(
+     *                summary="گرفتن کل داده های مشتری ها",
+     *                example ="گرفتن کل داده های مشتری ها",
+     *                value = {"status":"success","code":200,"message":"Successfully logged out","errors":{},"data":{}}
+     *              )
+     *          )
+     *       ),
+     *    @OA\Response(
+     *          response=401,
+     *          description="گرفتن کل داده های مشتری ها",
+     *          @OA\JsonContent(
+     *             @OA\Examples(
+     *                summary="گرفتن کل داده های مشتری ها",
+     *                example ="گرفتن کل داده های مشتری ها",
+     *                value = {"status":"error","code":401,"message":"Unauthenticated.","errors":{},"data":{}}
+     *              )
+     *          )
+     *       ),
+     * )
      */
     public function index()
     {
