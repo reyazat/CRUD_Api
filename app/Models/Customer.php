@@ -20,8 +20,6 @@ class Customer extends Model
         'date_of_birth',
         'phonenumber',
         'email',
-        'bank_account',
-        'status'
+        'bank_account'
     ];
-
 }

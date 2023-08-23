@@ -20,6 +20,9 @@ Route::prefix('v1')->group(function () {
 
     Route::controller(CustomerController::class)->group(function () {
         Route::get('/customers', 'index');
+        Route::post('/customers', 'store');
+        Route::put('/customers/{customer}', 'update');
+        Route::delete('/customers/{customer}', 'destroy');
     });
 });
 

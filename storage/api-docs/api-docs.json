@@ -14,13 +14,13 @@
     },
     "paths": {
         "/api/v1/customers": {
-            "put": {
+            "get": {
                 "tags": [
                     "Customer"
                 ],
                 "summary": "گرفتن کل داده های مشتری ها",
                 "description": "گرفتن کل داده های مشتری ها",
-                "operationId": "afae066e9cc32c8ca578a8b3899ee2ae",
+                "operationId": "da9547eb734ff6976718d5328940c13a",
                 "parameters": [
                     {
                         "name": "Accept",
@@ -65,6 +65,52 @@
                                             "status": "error",
                                             "code": 401,
                                             "message": "Unauthenticated.",
+                                            "errors": [],
+                                            "data": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "حذف مشتری ",
+                "description": "حذف مشتری",
+                "operationId": "19467afa9b9eacaa9de17f2be03a098f",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "application/json;",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "حذف مشتری",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "حذف مشتری": {
+                                        "summary": "حذف مشتری",
+                                        "value": {
+                                            "status": "success",
+                                            "code": 200,
+                                            "message": "The item was deleted!",
                                             "errors": [],
                                             "data": []
                                         }

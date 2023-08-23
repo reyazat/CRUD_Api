@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use App\Repositories\CustomerRepository;
+use App\Http\Helpers\Helpers;
+use Illuminate\Database\QueryException;
 
 class CustomerController extends Controller
 {
@@ -18,7 +20,7 @@ class CustomerController extends Controller
     }
 
       /**
-     * @OA\Put(
+     * @OA\Get(
      * path="/api/v1/customers",
      * tags={"Customer"},
      * summary="گرفتن کل داده های مشتری ها",
@@ -75,7 +77,24 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $validate = $request->validated();
+        try {
+            $customer = $this->repository->store($validate);
+            return Helpers::setResponse([
+                'message' => __("Saved."),
+                'status' => 'success',
+                'code' => 200,
+                "data" => $customer,
+            ]);
+        } catch (QueryException $e) {
+
+            return Helpers::setResponse([
+                'message' => $e->getMessage(),
+                'status' => 'error',
+                'code' => 422,
+                'errors' => $e->errorInfo
+            ]);
+        }
     }
 
     /**
@@ -99,14 +118,61 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $validate = $request->validated();
+        try {
+            $customer = $this->repository->update($validate , $customer);
+            return Helpers::setResponse([
+                'message' => __("Information updated successfully."),
+                'status' => 'success',
+                'code' => 200,
+                "data" => $customer,
+            ]);
+        } catch (QueryException $e) {
+
+            return Helpers::setResponse([
+                'message' => $e->getMessage(),
+                'status' => 'error',
+                'code' => 422,
+                'errors' => $e->errorInfo
+            ]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
+     /**
+     * @OA\Delete(
+     * path="/api/v1/customers",
+     * tags={"Customer"},
+     * summary="حذف مشتری ",
+     * description="حذف مشتری",
+     * security={ {"sanctum": {} }},
+     *    @OA\Parameter(
+     *          description="application/json;",
+     *          in="header",
+     *          name="Accept",
+     *          required=true,
+     *          @OA\Schema(type="string"),
+     *      ),
+     *
+     *     @OA\Response(
+     *          response=200,
+     *          description="حذف مشتری",
+     *          @OA\JsonContent(
+     *             @OA\Examples(
+     *                summary="حذف مشتری",
+     *                example ="حذف مشتری",
+     *                value = {"status":"success","code":200,"message":"The item was deleted!","errors":{},"data":{}}
+     *              )
+     *          )
+     *       ),
+     * )
      */
     public function destroy(Customer $customer)
     {
-        //
+        $this->repository->delete($customer);
+        return Helpers::setResponse([
+            'message' => __('The item was deleted!'),
+            'status' => 'success',
+            'code' => 200,
+        ]);
     }
 }

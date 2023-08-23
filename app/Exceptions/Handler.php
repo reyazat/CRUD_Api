@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use App\Http\Helpers\Helpers;
+
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +28,19 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+        if ($request->is('api/*')) {
+            if ($e instanceof \Illuminate\Auth\AuthenticationException) {
+                return Helpers::setResponse([
+                    'message' => $e->getMessage(),
+                    'status' => 'error',
+                    'code' => ($e->getCode() != 0) ? $e->getCode() : 401
+                ]);
+            }
+        }
+        return parent::render($request, $e);
     }
 }

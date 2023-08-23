@@ -23,7 +23,6 @@ class CustomerFactory extends Factory
             'phonenumber' => fake()->phoneNumber(),
             'email' => fake()->unique()->email(),
             'bank_account' => fake()->iban(),
-            'status' => 1,
         ];
     }
 }
